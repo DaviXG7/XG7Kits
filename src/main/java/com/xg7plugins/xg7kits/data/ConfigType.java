@@ -1,12 +1,13 @@
-package com.xg7plugins.xg7randomkits.data;
+package com.xg7plugins.xg7kits.data;
 
 public enum ConfigType {
 
     CONFIG("config"),
     MESSAGES("messages"),
-    DATA("data"),
+    DATA("data/data"),
     COMMANDS("commands"),
-    SELECTOR("selector");
+    SELECTOR("menus/selector"),
+    SHOP("menus/shop.yml");
 
     private String config;
 

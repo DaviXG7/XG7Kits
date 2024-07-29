@@ -1,4 +1,4 @@
-package com.xg7plugins.xg7randomkits.data.player;
+package com.xg7plugins.xg7kits.data.player;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,10 +1,10 @@
-package com.xg7plugins.xg7randomkits.events.commandtabevents;
+package com.xg7plugins.xg7kits.events.commandtabevents;
 
-import com.xg7plugins.xg7randomkits.commands.PermissionType;
-import com.xg7plugins.xg7randomkits.data.ConfigType;
-import com.xg7plugins.xg7randomkits.data.handler.Config;
-import com.xg7plugins.xg7randomkits.events.PacketPlayEvent;
-import com.xg7plugins.xg7randomkits.utils.NMSUtil;
+import com.xg7plugins.xg7kits.commands.PermissionType;
+import com.xg7plugins.xg7kits.data.ConfigType;
+import com.xg7plugins.xg7kits.data.handler.Config;
+import com.xg7plugins.xg7kits.events.PacketPlayEvent;
+import com.xg7plugins.xg7kits.utils.NMSUtil;
 import lombok.SneakyThrows;
 import org.bukkit.entity.Player;
 

@@ -1,11 +1,11 @@
-package com.xg7plugins.xg7randomkits.events;
+package com.xg7plugins.xg7kits.events;
 
-import com.xg7plugins.xg7randomkits.XG7RandomKits;
-import com.xg7plugins.xg7randomkits.data.ConfigType;
-import com.xg7plugins.xg7randomkits.data.handler.Config;
-import com.xg7plugins.xg7randomkits.events.commandtabevents.PluginTabCompleteEventNew;
-import com.xg7plugins.xg7randomkits.utils.Log;
-import com.xg7plugins.xg7randomkits.utils.PacketEvents;
+import com.xg7plugins.xg7kits.XG7Kits;
+import com.xg7plugins.xg7kits.data.ConfigType;
+import com.xg7plugins.xg7kits.data.handler.Config;
+import com.xg7plugins.xg7kits.events.commandtabevents.PluginTabCompleteEventNew;
+import com.xg7plugins.xg7kits.utils.Log;
+import com.xg7plugins.xg7kits.utils.PacketEvents;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
@@ -30,7 +30,7 @@ public class EventManager implements Listener {
 
     public static void reload() {
         Log.info("Reloading events...");
-        HandlerList.unregisterAll(XG7RandomKits.getPlugin());
+        HandlerList.unregisterAll(XG7Kits.getPlugin());
         new EventManager().init();
     }
 
@@ -40,9 +40,9 @@ public class EventManager implements Listener {
 
         worlds = Config.getList(ConfigType.CONFIG, "enabled-worlds");
 
-        XG7RandomKits.getPlugin().getServer().getPluginManager().registerEvents(this, XG7RandomKits.getPlugin());
+        XG7Kits.getPlugin().getServer().getPluginManager().registerEvents(this, XG7Kits.getPlugin());
 
-        events.stream().filter(Event::isEnabled).collect(Collectors.toList()).forEach(event -> XG7RandomKits.getPlugin().getServer().getPluginManager().registerEvents(event, XG7RandomKits.getPlugin()));
+        events.stream().filter(Event::isEnabled).collect(Collectors.toList()).forEach(event -> XG7Kits.getPlugin().getServer().getPluginManager().registerEvents(event, XG7Kits.getPlugin()));
 
         Log.loading("Events loaded!");
     }

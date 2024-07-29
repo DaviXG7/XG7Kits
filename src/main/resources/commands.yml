@@ -1,0 +1,12 @@
+anti-tab: true
+
+commands:
+  xg7lobbyreload:
+    enabled: true
+    args: [ "7lreload", "xg7lreload", "7lrl", "lrl" ]
+  xg7lobbybugreport:
+    enabled: true
+    args: [ "7lbugreport", "xg7lbugreport", "lbugreport" ]
+  xg7lobbysuggest:
+    enabled: true
+    args: [ "7lsuggest", "xg7lsuggest", "lsuggest" ]

@@ -1,11 +1,11 @@
-package com.xg7plugins.xg7randomkits.commands;
+package com.xg7plugins.xg7kits.commands;
 
-import com.xg7plugins.xg7randomkits.XG7RandomKits;
-import com.xg7plugins.xg7randomkits.data.ConfigType;
-import com.xg7plugins.xg7randomkits.data.handler.Config;
-import com.xg7plugins.xg7randomkits.events.EventManager;
-import com.xg7plugins.xg7randomkits.utils.Log;
-import com.xg7plugins.xg7randomkits.utils.Text;
+import com.xg7plugins.xg7kits.XG7Kits;
+import com.xg7plugins.xg7kits.data.ConfigType;
+import com.xg7plugins.xg7kits.data.handler.Config;
+import com.xg7plugins.xg7kits.events.EventManager;
+import com.xg7plugins.xg7kits.utils.Log;
+import com.xg7plugins.xg7kits.utils.Text;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import org.bukkit.Bukkit;
@@ -25,7 +25,7 @@ import java.util.List;
 public class CommandManager implements CommandExecutor, TabCompleter, Listener {
 
     @Getter
-    private static final List<com.xg7plugins.xg7randomkits.commands.Command> commands = new ArrayList<>();
+    private static final List<com.xg7plugins.xg7kits.commands.Command> commands = new ArrayList<>();
 
     @SneakyThrows
     public void init() {
@@ -36,10 +36,10 @@ public class CommandManager implements CommandExecutor, TabCompleter, Listener {
         commandMapField.setAccessible(true);
         CommandMap commandMap = (CommandMap) commandMapField.get(Bukkit.getServer());
 
-        for (com.xg7plugins.xg7randomkits.commands.Command command : commands) {
+        for (com.xg7plugins.xg7kits.commands.Command command : commands) {
             Constructor<PluginCommand> constructor = PluginCommand.class.getDeclaredConstructor(String.class, Plugin.class);
             constructor.setAccessible(true);
-            PluginCommand pluginCommand = constructor.newInstance(command.getName(), XG7RandomKits.getPlugin());
+            PluginCommand pluginCommand = constructor.newInstance(command.getName(), XG7Kits.getPlugin());
             pluginCommand.setExecutor(this);
             pluginCommand.setUsage(command.getSyntax());
             pluginCommand.setTabCompleter(this);
@@ -48,7 +48,7 @@ public class CommandManager implements CommandExecutor, TabCompleter, Listener {
             commandMap.register(command.getName(), pluginCommand);
         }
 
-        XG7RandomKits.getPlugin().getServer().getPluginManager().registerEvents(this, XG7RandomKits.getPlugin());
+        XG7Kits.getPlugin().getServer().getPluginManager().registerEvents(this, XG7Kits.getPlugin());
 
         Log.fine("Commands loaded!");
     }
@@ -56,7 +56,7 @@ public class CommandManager implements CommandExecutor, TabCompleter, Listener {
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
 
-        com.xg7plugins.xg7randomkits.commands.Command command1 = commands.stream().filter(cmd -> cmd.getName().equals(command.getName())).findFirst().get();
+        com.xg7plugins.xg7kits.commands.Command command1 = commands.stream().filter(cmd -> cmd.getName().equals(command.getName())).findFirst().get();
 
         if (!commandSender.hasPermission(command1.getPermission().getPerm()) && !command1.getPermission().equals(PermissionType.DEFAULT)) {
             Text.send(Config.getString(ConfigType.MESSAGES, "commands.no-permission"), commandSender);
@@ -80,7 +80,7 @@ public class CommandManager implements CommandExecutor, TabCompleter, Listener {
     @Nullable
     @Override
     public List<String> onTabComplete(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
-        com.xg7plugins.xg7randomkits.commands.Command command1 = commands.stream().filter(cmd -> cmd.getName().equals(command.getName())).findFirst().get();
+        com.xg7plugins.xg7kits.commands.Command command1 = commands.stream().filter(cmd -> cmd.getName().equals(command.getName())).findFirst().get();
         return command1.onTabComplete(commandSender,command,s,strings);
     }
 }

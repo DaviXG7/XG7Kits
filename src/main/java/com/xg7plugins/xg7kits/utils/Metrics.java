@@ -1,4 +1,4 @@
-package com.xg7plugins.xg7randomkits.utils;
+package com.xg7plugins.xg7kits.utils;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;

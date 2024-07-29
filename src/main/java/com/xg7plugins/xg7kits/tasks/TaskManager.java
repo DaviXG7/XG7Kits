@@ -1,7 +1,7 @@
-package com.xg7plugins.xg7randomkits.tasks;
+package com.xg7plugins.xg7kits.tasks;
 
-import com.xg7plugins.xg7randomkits.XG7RandomKits;
-import com.xg7plugins.xg7randomkits.utils.Log;
+import com.xg7plugins.xg7kits.XG7Kits;
+import com.xg7plugins.xg7kits.utils.Log;
 import org.bukkit.Bukkit;
 
 import java.util.ArrayList;
@@ -27,7 +27,7 @@ public class TaskManager {
 
     public static void addTask(Task task) {
         int taskid = Bukkit.getServer().getScheduler().runTaskTimer(
-                XG7RandomKits.getPlugin(),
+                XG7Kits.getPlugin(),
                 task::run,
                 0,
                 task.getDelay()
@@ -38,7 +38,7 @@ public class TaskManager {
 
     public static void addTaskAsync(Task task) {
         int taskid = Bukkit.getServer().getScheduler().runTaskTimerAsynchronously(
-                XG7RandomKits.getPlugin(),
+                XG7Kits.getPlugin(),
                 task::run,
                 0,
                 task.getDelay()

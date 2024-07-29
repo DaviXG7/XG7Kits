@@ -1,8 +1,8 @@
-package com.xg7plugins.xg7randomkits.commands;
+package com.xg7plugins.xg7kits.commands;
 
-import com.xg7plugins.xg7lobby.data.ConfigType;
-import com.xg7plugins.xg7lobby.data.handler.Config;
-import com.xg7plugins.xg7lobby.utils.Text;
+import com.xg7plugins.xg7kits.data.ConfigType;
+import com.xg7plugins.xg7kits.data.handler.Config;
+import com.xg7plugins.xg7kits.utils.Text;
 import com.xg7plugins.xg7menus.api.menus.InventoryItem;
 import org.bukkit.command.CommandSender;
 

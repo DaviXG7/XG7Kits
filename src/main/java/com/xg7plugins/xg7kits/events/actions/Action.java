@@ -1,24 +1,12 @@
-package com.xg7plugins.xg7lobby.events.actions;
+package com.xg7plugins.xg7kits.events.actions;
 
 import com.cryptomorin.xseries.XEntityType;
 import com.cryptomorin.xseries.XPotion;
 import com.cryptomorin.xseries.XSound;
-import com.xg7plugins.xg7lobby.XG7Lobby;
-import com.xg7plugins.xg7lobby.cache.CacheManager;
-import com.xg7plugins.xg7lobby.cache.CacheType;
-import com.xg7plugins.xg7lobby.data.ConfigType;
-import com.xg7plugins.xg7lobby.data.handler.Config;
-import com.xg7plugins.xg7lobby.data.handler.SQLHandler;
-import com.xg7plugins.xg7lobby.data.player.PlayerManager;
-import com.xg7plugins.xg7lobby.data.player.model.PlayerData;
-import com.xg7plugins.xg7lobby.events.jumpevents.DoubleJumpEvent;
-import com.xg7plugins.xg7lobby.menus.MenuManager;
-import com.xg7plugins.xg7lobby.menus.SelectorManager;
-import com.xg7plugins.xg7lobby.utils.Log;
-import com.xg7plugins.xg7lobby.utils.Text;
-import com.xg7plugins.xg7menus.api.menus.InventoryItem;
-import com.xg7plugins.xg7menus.api.menus.Menu;
-import org.apache.commons.lang.StringUtils;
+import com.xg7plugins.xg7kits.data.player.PlayerData;
+import com.xg7plugins.xg7kits.data.player.PlayerManager;
+import com.xg7plugins.xg7kits.utils.Log;
+import com.xg7plugins.xg7kits.utils.Text;
 import org.bukkit.*;
 import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
@@ -87,24 +75,6 @@ public class Action {
                 player.sendTitle(Text.getFormatedText(player, textSplited[0]), Text.getFormatedText(player, textSplited[1]), Integer.parseInt(textSplited[2]), Integer.parseInt(textSplited[3]), Integer.parseInt(textSplited[4]));
 
                 return;
-            case OPEN:
-
-                final String finalText = text;
-                Bukkit.getScheduler().runTaskLater(XG7Lobby.getPlugin(), () -> {
-                    if (MenuManager.getById(finalText) == null) {
-                        Log.severe("The menu with gui " + finalText + " doesn't exist!");
-                        return;
-                    }
-
-                    MenuManager.openById(player, finalText);
-                },5);
-
-                return;
-            case CLOSE:
-
-                player.closeInventory();
-
-                return;
 
             case GAMEMODE:
 
@@ -150,30 +120,6 @@ public class Action {
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), text);
 
                 return;
-            case FLY:
-
-                if (data.isPVPEnabled() && !data.isFlying() && Config.getBoolean(ConfigType.CONFIG, "pvp.disable-fly")) return;
-
-                if (text.equals("on")) {
-                    player.setAllowFlight(true);
-                    player.setFlying(true);
-                    data.setFlying(true);
-                    DoubleJumpEvent.isJumping.remove(player.getUniqueId());
-                }
-                if (text.equals("off")) {
-                    player.setAllowFlight(false);
-                    player.setFlying(false);
-                    data.setFlying(false);
-                    DoubleJumpEvent.isJumping.add(player.getUniqueId());
-                }
-
-                CacheManager.put(data.getId(), CacheType.SQL_QUERY, data);
-
-                SQLHandler.update("UPDATE players SET isflying = ? WHERE id = ?", data.isFlying(), data.getId());
-
-                Text.send(data.isFlying() ? Config.getString(ConfigType.MESSAGES, "fly.on-enable") : Config.getString(ConfigType.MESSAGES, "fly.on-disable"), player);
-
-                return;
             case MESSAGE:
 
                 Text.send(text, player);
@@ -187,75 +133,6 @@ public class Action {
                 }
 
                 player.playSound(player.getLocation(), Objects.requireNonNull(XSound.valueOf(textSplited[0].toUpperCase()).parseSound()), Float.parseFloat(textSplited[1]), Float.parseFloat(textSplited[2]));
-
-                return;
-            case SWAP:
-
-                Menu menu = null;
-
-                if (textSplited[2].equals("menuclickevent")) {
-                    menu = com.xg7plugins.xg7menus.api.manager.MenuManager.getMenuByPlayer(player);
-                }
-                if (textSplited[2].equals("selectorclickevent")) {
-                    menu = com.xg7plugins.xg7menus.api.manager.MenuManager.getPlayerMenuByPlayer(player);
-                }
-
-                if (menu == null) return;
-
-                InventoryItem item = null;
-
-                if (textSplited[2].equals("menuclickevent")) {
-                    item = MenuManager.getStoredItems().get(menu.getId()).get(textSplited[1]);
-                }
-                if (textSplited[2].equals("selectorclickevent")) {
-                    item = SelectorManager.getStoredItems().get(textSplited[1]);
-                }
-                if (item == null) return;
-
-                if (item instanceof InventoryItem.SkullInventoryItem) {
-                    if (MenuManager.getSkulls().get(menu.getId()).contains(item)) ((InventoryItem.SkullInventoryItem)item).setOwner(player.getName(), Bukkit.getOnlineMode());
-                }
-
-                item.setSlot(Integer.parseInt(textSplited[0]) - 1);
-                item.setPlaceholders(player);
-
-                menu.updateInventory(player, item);
-
-                return;
-
-            case TOGGLE_HIDE:
-
-                data.setPlayerHiding(!data.isPlayerHiding());
-                Bukkit.getOnlinePlayers().forEach(player1 -> {
-                    if (data.isPlayerHiding()) player.hidePlayer(player1);
-                    else player.showPlayer(player1);
-                });
-                CacheManager.put(data.getId(), CacheType.SQL_QUERY, data);
-                SQLHandler.update("UPDATE players SET isplayershide = ? WHERE id = ?", data.isPlayerHiding(), data.getId());
-
-                Text.send(data.isPlayerHiding() ? Config.getString(ConfigType.MESSAGES, "vanish.on-enable") : Config.getString(ConfigType.MESSAGES, "vanish.on-disable"), player);
-
-                return;
-
-            case HIDE:
-
-                data.setPlayerHiding(true);
-                Bukkit.getOnlinePlayers().forEach(player::hidePlayer);
-                CacheManager.put(data.getId(), CacheType.SQL_QUERY, data);
-                SQLHandler.update("UPDATE players SET isplayershide = ? WHERE id = ?", true, data.getId());
-
-                Text.send(Config.getString(ConfigType.MESSAGES, "vanish.on-enable"), player);
-
-                return;
-
-            case SHOW:
-
-                data.setPlayerHiding(false);
-                Bukkit.getOnlinePlayers().forEach(player::showPlayer);
-                CacheManager.put(data.getId(), CacheType.SQL_QUERY, data);
-                SQLHandler.update("UPDATE players SET isplayershide = ? WHERE id = ?", false, data.getId());
-
-                Text.send(Config.getString(ConfigType.MESSAGES, "vanish.on-disable"), player);
 
                 return;
 
@@ -285,11 +162,6 @@ public class Action {
                 try {
                     firework.detonate();
                 } catch (Exception ignored) {}
-
-                return;
-
-            case CLEAR_CHAT:
-                Bukkit.broadcastMessage(StringUtils.repeat(" \n", 100));
 
         }
     }

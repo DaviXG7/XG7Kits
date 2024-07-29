@@ -1,8 +1,8 @@
-package com.xg7plugins.xg7randomkits.data.handler;
+package com.xg7plugins.xg7kits.data.handler;
 
-import com.xg7plugins.xg7randomkits.XG7RandomKits;
-import com.xg7plugins.xg7randomkits.data.ConfigType;
-import com.xg7plugins.xg7randomkits.utils.Log;
+import com.xg7plugins.xg7kits.XG7Kits;
+import com.xg7plugins.xg7kits.data.ConfigType;
+import com.xg7plugins.xg7kits.utils.Log;
 import lombok.SneakyThrows;
 
 import java.io.File;
@@ -35,11 +35,11 @@ public class SQLHandler {
 
             Class.forName("org.sqlite.JDBC");
 
-            File file = new File(XG7RandomKits.getPlugin().getDataFolder(), "playerdata.db");
+            File file = new File(XG7Kits.getPlugin().getDataFolder(), "playerdata.db");
 
             if (!file.exists()) file.createNewFile();
 
-            connection = DriverManager.getConnection("jdbc:sqlite:" + XG7RandomKits.getPlugin().getDataFolder().getPath() + "/playerdata.db");
+            connection = DriverManager.getConnection("jdbc:sqlite:" + XG7Kits.getPlugin().getDataFolder().getPath() + "/playerdata.db");
 
             Log.fine("SQLite connection created!");
 

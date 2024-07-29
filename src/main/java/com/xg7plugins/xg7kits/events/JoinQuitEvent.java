@@ -1,4 +1,4 @@
-package com.xg7plugins.xg7randomkits.events;
+package com.xg7plugins.xg7kits.events;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerJoinEvent;

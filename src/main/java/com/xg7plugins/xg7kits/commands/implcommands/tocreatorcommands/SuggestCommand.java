@@ -1,10 +1,10 @@
-package com.xg7plugins.xg7lobby.commands.implcommands.tocreatorcommands;
+package com.xg7plugins.xg7kits.commands.implcommands.tocreatorcommands;
 
 import com.cryptomorin.xseries.XMaterial;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.xg7plugins.xg7lobby.commands.Command;
-import com.xg7plugins.xg7lobby.commands.PermissionType;
+import com.xg7plugins.xg7kits.commands.Command;
+import com.xg7plugins.xg7kits.commands.PermissionType;
 import com.xg7plugins.xg7menus.api.menus.InventoryItem;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;

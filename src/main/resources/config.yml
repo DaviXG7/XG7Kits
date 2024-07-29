@@ -1,0 +1,129 @@
+###############################################
+#GENERAL                                      #
+###############################################
+
+#Debug mode
+debug: false
+
+#Prefix
+plugin-prefix: "&9[XG7&3Lob&bby] &8| &r"
+
+#Will warn for a new version
+warn-for-version: true
+
+#Enabled worlds
+enabled-worlds:
+  - world
+
+###############################################
+#SQL                                          #
+###############################################
+
+#Cooldown to remove players on ram
+sql-cache-expires: 30
+
+#Minutes to save data
+save-sql: 30
+
+sql:
+  host: "localhost"
+  port: "3306"
+  database: "xg7lobbytest"
+
+  user: "root"
+  pass: "root"
+
+###############################################
+#EVENTS                                       #
+###############################################
+
+on-kill-events:
+
+###############################################
+#KITS                                         #
+###############################################
+
+kits:
+  random: false
+
+###############################################
+#DROPS                                         #
+###############################################
+
+drops:
+  cancel: true
+
+
+
+###############################################
+#REGION                                       #
+###############################################
+
+region:
+  reset: false
+
+  y-level-floor: 65
+
+  floor-block:
+
+
+###############################################
+#SCORES                                       #
+###############################################
+
+scores-update: 5
+
+tablist:
+
+  enabled: true
+
+  #Header of the tablist
+  header:
+    - "&9X&3G7&bLobby"
+    - "&7Your rank: %luckperms_prefix%"
+    - ""
+
+  #Footer of the tablist
+  footer:
+    - ""
+    - "&9Visit our website: &bwww.site.com"
+    - "&5&oPlugin made by DaviXG7"
+
+scoreboard:
+
+  enabled: true
+
+  #Scoreboard title
+  #In older versions, the max is 32 characters!
+  title: "&9XG7&3Lob&bby"
+
+  #Lines of the score
+  lines:
+    - ""
+    - "&e&lPlayer&f:"
+    - "&fName: &9%player_name%"
+    - "&fRank: &r[%prefix%]"
+    - ""
+    - "&fPlayers online: &a%server_online%"
+    - ""
+    - "&8www.example.com"
+
+
+# ONLY WORKS +1.9
+bossbar:
+
+  enabled: true
+
+  #Placeholders don't work here
+  title: "&9&lWelcome to the server %player_name%"
+
+  #See all colors here
+  #https://helpch.at/docs/1.16.5/org/bukkit/boss/BarColor.html
+  color: BLUE
+
+  #See all styles here
+  #https://helpch.at/docs/1.16.5/org/bukkit/boss/BarStyle.html
+  style: SOLID
+
+  #Goes from 0 to 1. For example: 0.5
+  progress: 1

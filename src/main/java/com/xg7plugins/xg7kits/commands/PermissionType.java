@@ -1,4 +1,4 @@
-package com.xg7plugins.xg7randomkits.commands;
+package com.xg7plugins.xg7kits.commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.permissions.Permission;
@@ -17,10 +17,6 @@ public enum PermissionType {
     ANTITAB_BYPASS("antitab.bypass"),
     ANTITAB_PLUGIN_BYPASS("antitab.plugin.bypass"),
 
-    SPAM("spam"),
-
-    HELP("help"),
-
     COMMAND("command.*"),
 
     BUG("xg7lobby.command.bug"),
@@ -31,67 +27,7 @@ public enum PermissionType {
     RELOAD_CONFIG("command.reload.config"),
     RELOAD_CACHE("command.reload.cache"),
     RELOAD_TASK("command.reload.task"),
-    RELOAD_MENUS("command.reload.menus"),
-
-    ACTION("command.action"),
-
-    GUI("command.gui"),
-
-    MOD("command.mod.*"),
-
-    WARN("command.mod.warn"),
-    WARN_REMOVE("command.mod.warn.remove"),
-    WARNS_OTHER("command.mod.warns.other"),
-    KICK("command.mod.kick"),
-
-    LOCKCHAT("command.lockchat"),
-    CHAT("command.chat.*"),
-    CHAT_SWEAR("command.chat.swear"),
-    CHAT_COMMANDS("command.chat.commands"),
-    CLEAR_CHAT("command.clearchat"),
-
-    BAN("command.mod.ban"),
-    TEMPBAN("command.mod.tempban"),
-    BANIP("command.mod.banip"),
-    UNBAN("command.mod.unban"),
-
-    GAMEMODE("command.gamemode.*"),
-    GAMEMODE_OTHERS("command.gamemode.others"),
-    GAMEMODE_SURVIVAL("command.gamemode.survival"),
-    GAMEMODE_CREATIVE("command.gamemode.creative"),
-    GAMEMODE_SPECTATOR("command.gamemode.spectator"),
-    GAMEMODE_ADVENTURE("command.gamemode.adventure"),
-
-    MUTE("command.mod.mute"),
-    UNMUTE("command.mod.unmute"),
-    TEMPMUTE("command.mod.tempmute"),
-
-    LOBBY("command.lobby.*"),
-    SET_LOBBY("command.lobby.set"),
-
-    FLY("command.fly"),
-    FLY_OTHER("command.fly.other"),
-    DOUBLE_JUMP("double-jump"),
-
-    ENTITY_ATTACK("entity-attack"),
-
-    PVP("command.pvp"),
-    PVP_OTHER("command.pvp.others"),
-
-    VANISH("command.vanish"),
-    VANISH_OTHER("command.vanish.others"),
-
-    BUILD("command.lobby.build"),
-    BUILD_OTHER("command.lobby.build.others"),
-
-    BLOCK("block.*"),
-    BLOCK_BUILD("block.place"),
-    BLOCK_INTERACT("block.interact"),
-    BLOCK_BREAK("block.break"),
-
-    ITEM("block.item.*"),
-    ITEM_PICKUP("block.item.pickup"),
-    ITEM_DROP("block.item.drop");
+    RELOAD_MENUS("command.reload.menus");
 
     final String perm;
 

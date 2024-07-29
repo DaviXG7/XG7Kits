@@ -1,18 +1,17 @@
-package com.xg7plugins.xg7lobby.commands.implcommands;
+package com.xg7plugins.xg7kits.commands.implcommands;
 
 import com.cryptomorin.xseries.XMaterial;
-import com.xg7plugins.xg7lobby.cache.CacheManager;
-import com.xg7plugins.xg7lobby.commands.Command;
-import com.xg7plugins.xg7lobby.commands.PermissionType;
-import com.xg7plugins.xg7lobby.commands.SubCommand;
-import com.xg7plugins.xg7lobby.data.handler.Config;
-import com.xg7plugins.xg7lobby.data.handler.SQLHandler;
-import com.xg7plugins.xg7lobby.events.EventManager;
-import com.xg7plugins.xg7lobby.scores.Bossbar;
-import com.xg7plugins.xg7lobby.tasks.Task;
-import com.xg7plugins.xg7lobby.tasks.TaskManager;
-import com.xg7plugins.xg7lobby.tasks.tasksimpl.ScoreTask;
-import com.xg7plugins.xg7lobby.utils.Text;
+import com.xg7plugins.xg7kits.cache.CacheManager;
+import com.xg7plugins.xg7kits.commands.Command;
+import com.xg7plugins.xg7kits.commands.PermissionType;
+import com.xg7plugins.xg7kits.commands.SubCommand;
+import com.xg7plugins.xg7kits.data.handler.Config;
+import com.xg7plugins.xg7kits.data.handler.SQLHandler;
+import com.xg7plugins.xg7kits.events.EventManager;
+import com.xg7plugins.xg7kits.scores.Bossbar;
+import com.xg7plugins.xg7kits.tasks.TaskManager;
+import com.xg7plugins.xg7kits.tasks.tasksimpl.ScoreTask;
+import com.xg7plugins.xg7kits.utils.Text;
 import com.xg7plugins.xg7menus.api.menus.InventoryItem;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
@@ -59,12 +58,12 @@ public class ReloadCommand implements Command {
 
     @Override
     public List<SubCommand> getSubCommands() {
-        return Arrays.asList(new ReloadAll(), new ReloadScores(), new ReloadDB(), new ReloadCache(), new ReloadTask(), new ReloadConfig(), new ReloadMenus());
+        return Arrays.asList(new ReloadAll(), new ReloadScores(), new ReloadDB(), new ReloadCache(), new ReloadTask(), new ReloadConfig());
     }
 
     @Override
     public List<String> onTabComplete(CommandSender sender, org.bukkit.command.Command command, String label, String[] args) {
-        return args.length == 1 ? Arrays.asList("config", "scores", "db", "all", "cache", "tasks", "menus") : new ArrayList<>();
+        return args.length == 1 ? Arrays.asList("config", "scores", "db", "all", "cache", "tasks") : new ArrayList<>();
     }
 
     static class ReloadAll implements SubCommand {
@@ -83,7 +82,6 @@ public class ReloadCommand implements Command {
         public void onCommand(CommandSender sender, org.bukkit.command.Command command, String label, String[] args) {
             Text.send("&bReloading...", sender);
             Config.reload();
-            Config.reloadMenus();
             CacheManager.reloadAll();
             TaskManager.cancelAll();
             if (Integer.parseInt(Bukkit.getServer().getVersion().split("\\.")[1].replace(")", "")) >= 9) {
@@ -196,27 +194,7 @@ public class ReloadCommand implements Command {
         public void onCommand(CommandSender sender, org.bukkit.command.Command command, String label, String[] args) {
             Text.send("&bReloading configs...", sender);
             Config.reload();
-            Config.reloadMenus();
             EventManager.reload();
-            Text.send("&aReloaded!", sender);
-        }
-    }
-    static class ReloadMenus implements SubCommand {
-
-        @Override
-        public String getName() {
-            return "menus";
-        }
-
-        @Override
-        public PermissionType getPermission() {
-            return PermissionType.RELOAD_MENUS;
-        }
-
-        @Override
-        public void onCommand(CommandSender sender, org.bukkit.command.Command command, String label, String[] args) {
-            Text.send("&bReloading menus...", sender);
-            Config.reloadMenus();
             Text.send("&aReloaded!", sender);
         }
     }

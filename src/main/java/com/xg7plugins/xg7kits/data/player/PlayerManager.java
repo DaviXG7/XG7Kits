@@ -1,7 +1,7 @@
-package com.xg7plugins.xg7randomkits.data.player;
+package com.xg7plugins.xg7kits.data.player;
 
-import com.xg7plugins.xg7randomkits.cache.CacheManager;
-import com.xg7plugins.xg7randomkits.data.handler.SQLHandler;
+import com.xg7plugins.xg7kits.cache.CacheManager;
+import com.xg7plugins.xg7kits.data.handler.SQLHandler;
 
 import java.util.List;
 import java.util.Map;

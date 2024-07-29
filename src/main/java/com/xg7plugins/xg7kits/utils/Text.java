@@ -1,8 +1,8 @@
-package com.xg7plugins.xg7randomkits.utils;
+package com.xg7plugins.xg7kits.utils;
 
 
-import com.xg7plugins.xg7randomkits.data.ConfigType;
-import com.xg7plugins.xg7randomkits.data.handler.Config;
+import com.xg7plugins.xg7kits.data.ConfigType;
+import com.xg7plugins.xg7kits.data.handler.Config;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import me.clip.placeholderapi.PlaceholderAPI;

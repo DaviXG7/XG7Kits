@@ -1,4 +1,4 @@
-package com.xg7plugins.xg7randomkits.cache;
+package com.xg7plugins.xg7kits.cache;
 
 public enum CacheType {
 

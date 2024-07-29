@@ -1,4 +1,4 @@
-package com.xg7plugins.xg7randomkits.commands;
+package com.xg7plugins.xg7kits.commands;
 
 import org.bukkit.command.CommandSender;
 

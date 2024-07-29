@@ -1,7 +1,7 @@
-package com.xg7plugins.xg7randomkits.utils;
+package com.xg7plugins.xg7kits.utils;
 
-import com.xg7plugins.xg7randomkits.events.EventManager;
-import com.xg7plugins.xg7randomkits.events.PacketPlayEvent;
+import com.xg7plugins.xg7kits.events.EventManager;
+import com.xg7plugins.xg7kits.events.PacketPlayEvent;
 import io.netty.channel.*;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

@@ -1,4 +1,4 @@
-package com.xg7plugins.xg7randomkits.tasks;
+package com.xg7plugins.xg7kits.tasks;
 
 public abstract class CooldownTask extends Task{
 

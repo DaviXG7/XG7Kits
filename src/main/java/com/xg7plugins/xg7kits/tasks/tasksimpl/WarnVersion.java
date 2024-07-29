@@ -1,10 +1,8 @@
-package com.xg7plugins.xg7lobby.tasks.tasksimpl;
+package com.xg7plugins.xg7kits.tasks.tasksimpl;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.xg7plugins.xg7lobby.data.ConfigType;
-import com.xg7plugins.xg7lobby.data.handler.Config;
-import com.xg7plugins.xg7lobby.tasks.Task;
+import com.xg7plugins.xg7kits.tasks.Task;
 import lombok.SneakyThrows;
 import org.bukkit.Bukkit;
 

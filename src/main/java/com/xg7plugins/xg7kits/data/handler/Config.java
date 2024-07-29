@@ -1,13 +1,8 @@
-package com.xg7plugins.xg7randomkits.data.handler;
+package com.xg7plugins.xg7kits.data.handler;
 
-import com.xg7plugins.xg7lobby.XG7Lobby;
-import com.xg7plugins.xg7lobby.data.ConfigType;
-import com.xg7plugins.xg7lobby.menus.MenuManager;
-import com.xg7plugins.xg7lobby.menus.SelectorManager;
-import com.xg7plugins.xg7lobby.utils.Log;
-import com.xg7plugins.xg7randomkits.XG7RandomKits;
-import com.xg7plugins.xg7randomkits.data.ConfigType;
-import com.xg7plugins.xg7randomkits.utils.Log;
+import com.xg7plugins.xg7kits.XG7Kits;
+import com.xg7plugins.xg7kits.data.ConfigType;
+import com.xg7plugins.xg7kits.utils.Log;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -25,51 +20,34 @@ public class Config {
     public static void load() {
 
         Log.info("Loading config files...");
-        File config = new File(XG7Lobby.getPlugin().getDataFolder(), "config.yml");
-        File commands = new File(XG7Lobby.getPlugin().getDataFolder(), "commands.yml");
-        File selector = new File(XG7Lobby.getPlugin().getDataFolder(), "selector.yml");
-        File data = new File(XG7Lobby.getPlugin().getDataFolder(), "data.yml");
-        File messages = new File(XG7Lobby.getPlugin().getDataFolder(), "messages.yml");
+        File config = new File(XG7Kits.getPlugin().getDataFolder(), "config.yml");
+        File commands = new File(XG7Kits.getPlugin().getDataFolder(), "commands.yml");
+        File selector = new File(XG7Kits.getPlugin().getDataFolder(), "menus/selector.yml");
+        File data = new File(XG7Kits.getPlugin().getDataFolder(), "data/data.yml");
+        File messages = new File(XG7Kits.getPlugin().getDataFolder(), "messages.yml");
+        File shop = new File(XG7Kits.getPlugin().getDataFolder(), "menus/shop.yml");
 
-        if (!config.exists()) XG7Lobby.getPlugin().saveResource("config.yml", false);
-        if (!commands.exists()) XG7Lobby.getPlugin().saveResource("commands.yml", false);
-        if (!selector.exists()) XG7Lobby.getPlugin().saveResource("selector.yml", false);
-        if (!data.exists()) XG7Lobby.getPlugin().saveResource("data.yml", false);
-        if (!messages.exists()) XG7Lobby.getPlugin().saveResource("messages.yml", false);
+        if (!config.exists()) XG7Kits.getPlugin().saveResource("config.yml", false);
+        if (!commands.exists()) XG7Kits.getPlugin().saveResource("commands.yml", false);
+        if (!selector.exists()) XG7Kits.getPlugin().saveResource("menus/selector.yml", false);
+        if (!data.exists()) XG7Kits.getPlugin().saveResource("data/data.yml", false);
+        if (!messages.exists()) XG7Kits.getPlugin().saveResource("messages.yml", false);
+        if (!shop.exists()) XG7Kits.getPlugin().saveResource("menus/shop.yml", false);
 
         configs.put(ConfigType.CONFIG, YamlConfiguration.loadConfiguration(config));
         configs.put(ConfigType.COMMANDS, YamlConfiguration.loadConfiguration(commands));
         configs.put(ConfigType.SELECTOR, YamlConfiguration.loadConfiguration(selector));
         configs.put(ConfigType.DATA, YamlConfiguration.loadConfiguration(data));
         configs.put(ConfigType.MESSAGES, YamlConfiguration.loadConfiguration(messages));
+        configs.put(ConfigType.SHOP, YamlConfiguration.loadConfiguration(messages));
 
         Log.fine("Config loaded!");
-
-        loadMenu();
-    }
-
-    public static void loadMenu() {
-        Log.info("Loading menu files...");
-        File menuFolder = new File(XG7RandomKits.getPlugin().getDataFolder(), "menus");
-
-        if (!menuFolder.exists()) {
-            menuFolder.mkdirs();
-            XG7RandomKits.getPlugin().saveResource("menus/profile.yml", false);
-            XG7RandomKits.getPlugin().saveResource("menus/games.yml", false);
-        }
-        for (File file : Objects.requireNonNull(menuFolder.listFiles())) {
-            FileConfiguration configuration = YamlConfiguration.loadConfiguration(file);
-            menus.add(configuration);
-        }
-        MenuManager.load();
-        if (Config.getBoolean(ConfigType.SELECTOR, "enabled")) SelectorManager.load();
-        Log.fine("Menus loaded!");
     }
 
     public static void load(ConfigType type) {
         Log.info("Loading config " + type.getConfig() + "...");
-        File file = new File(XG7RandomKits.getPlugin().getDataFolder(), type.getConfig());
-        if (!file.exists()) XG7RandomKits.getPlugin().saveResource(type.getConfig(), false);
+        File file = new File(XG7Kits.getPlugin().getDataFolder(), type.getConfig());
+        if (!file.exists()) XG7Kits.getPlugin().saveResource(type.getConfig(), false);
         configs.put(type, YamlConfiguration.loadConfiguration(file));
         Log.fine("Loaded!");
 
@@ -135,21 +113,11 @@ public class Config {
         Log.fine("Loaded!");
     }
 
-    public static void reloadMenus() {
-        Log.info("Reloading menus...");
-        menus.clear();
-        MenuManager.getSkulls().clear();
-        MenuManager.getStoredItems().clear();
-        reload(ConfigType.SELECTOR);
-        loadMenu();
-        Log.fine("Successful reloaded!");
-    }
-
     @SneakyThrows
     public static void save() {
         Log.info("Saving config files....");
         for (Map.Entry<ConfigType, FileConfiguration> config : configs.entrySet()) {
-            config.getValue().save(new File(XG7RandomKits.getPlugin().getDataFolder(), config.getKey().getConfig()));
+            config.getValue().save(new File(XG7Kits.getPlugin().getDataFolder(), config.getKey().getConfig()));
         }
         Log.fine("Successful saved!");
     }
@@ -157,7 +125,7 @@ public class Config {
     @SneakyThrows
     public static void save(ConfigType configType) {
         Log.info("Saving config " + configType.getConfig() + "...");
-        configs.get(configType).save(new File(XG7RandomKits.getPlugin().getDataFolder(), configType.getConfig()));
+        configs.get(configType).save(new File(XG7Kits.getPlugin().getDataFolder(), configType.getConfig()));
         Log.fine("Loaded!");
     }
 

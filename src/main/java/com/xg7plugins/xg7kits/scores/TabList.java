@@ -1,7 +1,7 @@
-package com.xg7plugins.xg7randomkits.scores;
+package com.xg7plugins.xg7kits.scores;
 
-import com.xg7plugins.xg7randomkits.utils.NMSUtil;
-import com.xg7plugins.xg7randomkits.utils.Text;
+import com.xg7plugins.xg7kits.utils.NMSUtil;
+import com.xg7plugins.xg7kits.utils.Text;
 import lombok.SneakyThrows;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

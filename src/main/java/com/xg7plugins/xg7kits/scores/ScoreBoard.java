@@ -1,8 +1,8 @@
-package com.xg7plugins.xg7randomkits.scores;
+package com.xg7plugins.xg7kits.scores;
 
-import com.xg7plugins.xg7randomkits.data.ConfigType;
-import com.xg7plugins.xg7randomkits.data.handler.Config;
-import com.xg7plugins.xg7randomkits.utils.Text;
+import com.xg7plugins.xg7kits.data.ConfigType;
+import com.xg7plugins.xg7kits.data.handler.Config;
+import com.xg7plugins.xg7kits.utils.Text;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
