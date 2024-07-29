@@ -1,0 +1,11 @@
+spawn-location:
+  world:
+  x:
+  y:
+  z:
+  yaw:
+  pitch:
+
+region:
+  first-location:
+  last-location:

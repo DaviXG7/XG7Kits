@@ -1,0 +1,4 @@
+name: XG7Kits
+version: '${project.version}'
+main: com.xg7plugins.xg7kits.XG7Kits
+api-version: '1.13'
