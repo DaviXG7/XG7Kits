@@ -37,6 +37,9 @@ sql:
 #EVENTS                                       #
 ###############################################
 
+on-respawn-events:
+
+
 on-kill-events:
 
 ###############################################
@@ -44,6 +47,11 @@ on-kill-events:
 ###############################################
 
 kits:
+
+  kit-cache-expires: 10
+
+  #Vai receber um kit aleatório se tiver a
+  #permissão do kit
   random: false
 
 ###############################################

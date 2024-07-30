@@ -27,7 +27,7 @@ public class PlayerManager {
 
         SQLHandler.update("INSERT INTO players (id, kills, deaths, killsstreak) VALUES (?, ?, ?)", id, 0,0,0);
 
-        CacheManager.put(data.getId(), data);
+        CacheManager.put(data);
 
         return data;
     }
