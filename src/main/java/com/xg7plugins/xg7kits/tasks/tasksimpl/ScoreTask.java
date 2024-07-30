@@ -11,7 +11,7 @@ import org.bukkit.Bukkit;
 
 public class ScoreTask extends Task {
     public ScoreTask() {
-        super("xg7lscore", Config.getLong(ConfigType.CONFIG, "scores-update"));
+        super("xg7kscore", Config.getLong(ConfigType.CONFIG, "scores-update"));
     }
 
     @Override

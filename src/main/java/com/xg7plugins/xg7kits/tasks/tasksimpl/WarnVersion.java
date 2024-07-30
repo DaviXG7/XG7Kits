@@ -16,7 +16,7 @@ public class WarnVersion extends Task {
     private static final String THIS_VERSION = "1.2-RETURN";
 
     public WarnVersion() {
-        super("xg7lwarnversion", 6000);
+        super("xg7kwarnversion", 6000);
     }
 
     @SneakyThrows
